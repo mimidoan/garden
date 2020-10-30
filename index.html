@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      background-color: yellow;
+      height: fit-content;
+    }
+
+    #garden {
+      font-size: 5rem;
+      text-align: center;
+    }
+
+    .flower {
+      font-size: 5rem;
+      animation: mymove 20s infinite;
+      position: relative;
+    }
+
+    @keyframes mymove {
+      100% {transform: rotate(360deg);}
+    }
+  </style>
+</head>
+
+<body>
+  <div id="garden">~~~~~ 🕊️ ~~~~~</div>
+</body>
+
+<script>
+  let garden = document.getElementById("garden")
+  garden.addEventListener("click", growFlowers)
+
+  function growFlowers() {
+    for(let i = 0; i < 5; i++) {
+      createElement("🕊️")
+    }
+  }
+
+  function createElement(emoji) {
+    ele = document.createElement('div')
+    ele.innerHTML = emoji
+    ele.className = 'flower'
+    document.body.appendChild(ele)
+    plant(ele)
+  }
+
+  function plant(emoji) {
+    let xy = getRandomPlot(emoji)
+    emoji.style.top = xy[0] + 'px'
+    emoji.style.left = xy[1] + 'px'
+  }
+
+  function getRandomPlot(element) {
+    return [getRandomInt(document.body.clientHeight), getRandomInt(document.body.clientWidth)]
+  }
+
+  function getRandomInt(max) {
+    return Math.random() * Math.floor(max);
+  }
+</script>
+</html>
